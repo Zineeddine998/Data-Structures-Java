@@ -2,6 +2,9 @@
 Implementation of a binary search tree
  */
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class BinarySearchTree {
 
     static class Node {
@@ -125,6 +128,60 @@ public class BinarySearchTree {
    */
   private int findSmallest(Node root){
       return root.left == null ? root.value : findSmallest(root.left); //keep traversing the tree until we get the right most leaf
+  }
+
+  /* functions of tree traversal
+  @inorder
+  @postorder
+  @preorder
+   */
+
+  public void inorderTraversal(Node node){
+      if(node != null){
+          inorderTraversal(node.left);
+          System.out.println(node.value);
+          inorderTraversal(node.right);
+      }
+  }
+
+  public void postorderTraversal(Node node){
+      if(node != null){
+          postorderTraversal(node.left);
+          postorderTraversal(node.right);
+          System.out.println(node.value);
+      }
+  }
+
+  public void preorderTraversal(Node node){
+      if(node != null){
+          System.out.println(node.value);
+          preorderTraversal(node.left);
+          preorderTraversal(node.right);
+      }
+  }
+
+  /* function to traverse the tree by levels
+
+   */
+
+  public void levelTraversal(){
+      if(root == null){
+          return;
+      }
+      Queue<Node> list  =  new LinkedList<>(); // list to keep track of the elements
+      list.add(root);
+
+      while(!list.isEmpty()){
+          Node node =  list.remove();
+          System.out.println(" " + node.value);
+          if(node.left != null){
+              list.add(node.left);
+          }
+          if(node.right != null){
+              list.add(node.right);
+          }
+      }
+
   }
 
 
