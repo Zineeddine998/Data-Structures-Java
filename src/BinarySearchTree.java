@@ -88,11 +88,28 @@ public class BinarySearchTree {
   @param val the value to be deleted
    */
   private Node deleteRecursive(Node current, int val){
+
       if(current == null){
           return null;
       }
       if(val == current.value){
-          ////
+          //if the node is a leaf
+          if( current.left == null && current.right  == null ){
+              return null;
+          }
+
+          //if the node contains only one child
+          if(current.right == null){
+              return current.left;
+          }
+          if(current.left == null){
+              return current.right;
+          }
+          //if the node has two children
+          int smallest = findSmallest(current.right); //find the smallest value in the right sub tree
+          current.value = smallest; //replace the value to be deleted with the value found in the right sub tree
+          current.right = deleteRecursive(current.right, smallest);//delete the duplicate
+          return current;
       }
       if(val < current.value){
           current.left  = deleteRecursive(current.left, val);
@@ -101,6 +118,17 @@ public class BinarySearchTree {
       current.right =  deleteRecursive(current.right, val);
       return current;
   }
+  /*
+  helper function to fund the smallest element in the right sub tree
+  @param root the node where we start the traversal
+  @the smallest value in the right sub tree
+   */
+  private int findSmallest(Node root){
+      return root.left == null ? root.value : findSmallest(root.left); //keep traversing the tree until we get the right most leaf
+  }
+
+
+
 
     /*  driver method to test the above functions
     */
