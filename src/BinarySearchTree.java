@@ -22,7 +22,7 @@ public class BinarySearchTree {
     Node root;
 
     /* Insert an element to the tree (recursively)
-    @param curent current node
+    @param current current node
     @param val the value to be inserted
     @return the node that contains the value to be inserted
       */
@@ -184,13 +184,34 @@ public class BinarySearchTree {
 
   }
 
+/* get the depth/ level of the binary tree (the length of the deepest branch recursively)
+@param root the root of the tree
+@return the depth/level of the tree
+ */
+public static int getDepth(Node root){
+    if(root == null) return 0;
+    int leftDepth =getDepth(root.left);
+    int rightDepth = getDepth(root.right);
 
+    return Math.max(leftDepth,rightDepth) + 1;
+}
 
 
     /*  driver method to test the above functions
     */
 
     public static void main(String[] args){
+
         BinarySearchTree tree = new BinarySearchTree();
+        tree.add(4);
+        tree.add(6);
+        tree.add(8);
+        tree.add(90);
+        tree.add(67);
+        tree.add(5);
+        tree.add(2);
+        tree.add(1);
+        tree.levelTraversal();
+        System.out.println("the depth of the tree : " + getDepth(tree.root));
     }
 }
