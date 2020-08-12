@@ -204,6 +204,20 @@ public static int getDepth(Node root) {
         if (root == null) return 0;
         return 1 + numberOfElements(root.right) + numberOfElements(root.left);
     }
+    
+     /* destroy a tree (delete all the elements in the tree)
+    in the case of Java programming language the garbage collection
+    will remove all the values that can't be accessed automatically
+    (in this case the nodes that are not pointed at)
+    @param root the root of the tree
+     */
+    public void deleteTree(Node root) {
+        root = null;
+        this.root = null;
+    }
+    
+     /*  driver method to test the above functions
+     */
 
     public static void main(String[] args){
 
@@ -219,20 +233,5 @@ public static int getDepth(Node root) {
         tree.levelTraversal();
         System.out.println("the depth of the tree : " + getDepth(tree.root));
         System.out.println("the number of elements in the tree :  " + numberOfElements(tree.root));
-    }
-
-
-    /*  driver method to test the above functions
-     */
-
-    /* destroy a tree (delete all the elements in the tree)
-    in the case of Java programming language the garbage collection
-    will remove all the values that can't be accessed automatically
-    (in this case the nodes that are not pointed at)
-    @param root the root of the tree
-     */
-    public void deleteTree(Node root) {
-        root = null;
-        this.root = null;
     }
 }
